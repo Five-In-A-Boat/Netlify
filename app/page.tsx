@@ -94,7 +94,7 @@ const caseStudies = [
     name: 'Antstream Arcade',
     img: `${WP}/2022/11/antstream-arcade.jpg`,
     excerpt:
-      'Antstream originally engaged Five in a Boat as its B2B communications agency with a view to raising the profile of the world's largest streaming service for retro games.',
+      "Antstream originally engaged Five in a Boat as its B2B communications agency with a view to raising the profile of the world's largest streaming service for retro games.",
     href: 'https://www.fiveplay.com/antstream-arcade/',
   },
   {
