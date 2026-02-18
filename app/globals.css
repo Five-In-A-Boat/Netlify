@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #1a1a1a;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer components {
+  /* Scroll reveal animation classes */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .reveal.from-left {
+    transform: translateX(-40px);
+  }
+
+  .reveal.from-right {
+    transform: translateX(40px);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+
+  /* Staggered children */
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+  .stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+  .stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+  .stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+  .stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+  .stagger.visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+  .stagger.visible > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+  .stagger.visible > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
+
+  /* Service card hover */
+  .service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .service-card img {
+    transition: transform 0.5s ease;
+  }
+
+  .service-card:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Team card hover */
+  .team-card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .team-card:hover {
+    transform: scale(1.03);
+  }
+
+  .team-card img {
+    transition: filter 0.3s ease;
+  }
+
+  .team-card:hover img {
+    filter: brightness(0.9);
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out;
+  }
+
+  .modal-content {
+    background: white;
+    max-width: 640px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 8px;
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Nav */
+  .nav-scrolled {
+    background: white !important;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  }
+
+  /* Hero text glow */
+  .hero-headline {
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  /* Case study card */
+  .case-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .case-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
+
+  /* Input focus */
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #2AB8C2 !important;
+    box-shadow: 0 0 0 3px rgba(42, 184, 194, 0.2);
+  }
+
+  /* Teal underline accent */
+  .teal-underline {
+    position: relative;
+    display: inline-block;
+  }
+
+  .teal-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #2AB8C2;
+  }
+}
