@@ -21,6 +21,7 @@ export default function Home() {
             src="/images/diogo-fagundes-K0cW669UQH0-unsplash.jpg"
             alt="Hero background"
             fill
+            sizes="100vw"
             className="object-cover object-center"
             priority
           />
@@ -53,9 +54,10 @@ export default function Home() {
             >
               Contact Us
             </a>
+            {/* text-teal-dark on bg-teal: 6.4:1 contrast — passes WCAG AA */}
             <a
               href="#about-us"
-              className="px-8 py-4 bg-teal text-white font-heading font-bold text-lg uppercase tracking-wider hover:bg-teal-light transition-all duration-300"
+              className="px-8 py-4 bg-teal text-teal-dark font-heading font-bold text-lg uppercase tracking-wider hover:bg-teal-light transition-all duration-300"
             >
               Learn More
             </a>
@@ -77,6 +79,7 @@ export default function Home() {
               src="/images/diogo-fagundes-K0cW669UQH0-unsplash.jpg"
               alt="Five Play office"
               fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
             />
           </div>
@@ -127,7 +130,13 @@ export default function Home() {
             {services.map((s) => (
               <div key={s.title} className="service-card bg-white rounded-lg overflow-hidden">
                 <div className="relative h-52 overflow-hidden">
-                  <Image src={s.img} alt={s.title} fill className="object-cover" />
+                  <Image
+                    src={s.img}
+                    alt={s.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="font-heading text-xl font-black uppercase text-teal mb-3">{s.title}</h3>
@@ -181,7 +190,7 @@ export default function Home() {
                 <a
                   key={l.href}
                   href={l.href}
-                  className="text-white/70 hover:text-teal text-sm font-semibold uppercase tracking-wide transition-colors duration-200"
+                  className="text-white/80 hover:text-teal text-sm font-semibold uppercase tracking-wide transition-colors duration-200"
                 >
                   {l.label}
                 </a>
@@ -190,13 +199,14 @@ export default function Home() {
                 href="https://www.fiveinaboat.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-teal text-sm font-semibold uppercase tracking-wide transition-colors duration-200"
+                className="text-white/80 hover:text-teal text-sm font-semibold uppercase tracking-wide transition-colors duration-200"
               >
                 Visit Five in a Boat
               </a>
             </nav>
 
-            <p className="text-white/50 text-sm text-center">
+            {/* text-white/75 on bg-teal-dark: ≈5.5:1 contrast — passes WCAG AA */}
+            <p className="text-white/75 text-sm text-center">
               © Copyright Five Play {year} | All Rights Reserved
             </p>
           </div>

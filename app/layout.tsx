@@ -4,14 +4,14 @@ import './globals.css';
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800', '900'],
+  weight: ['600', '700', '900'],
   variable: '--font-heading',
   display: 'swap',
 });
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '600'],
   variable: '--font-body',
   display: 'swap',
 });

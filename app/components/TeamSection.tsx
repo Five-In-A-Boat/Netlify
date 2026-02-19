@@ -1,26 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { team } from '@/lib/data';
+import { useModal } from '@/lib/useModal';
 
 export default function TeamSection() {
-  const [modal, setModal] = useState<number | null>(null);
-
-  useEffect(() => {
-    document.body.style.overflow = modal !== null ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [modal]);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setModal(null);
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, []);
+  const { modal, setModal } = useModal();
 
   return (
     <section id="our-team" className="bg-white py-24">
@@ -46,6 +31,7 @@ export default function TeamSection() {
                 src={team[0].img}
                 alt={team[0].name}
                 fill
+                sizes="(min-width: 768px) 320px, 256px"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-teal/0 hover:bg-teal/10 transition-colors duration-300 flex items-end justify-center pb-6 opacity-0 hover:opacity-100">
@@ -72,6 +58,7 @@ export default function TeamSection() {
                   src={member.img}
                   alt={member.name}
                   fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 flex items-end justify-center pb-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -94,12 +81,18 @@ export default function TeamSection() {
             if (e.target === e.currentTarget) setModal(null);
           }}
         >
-          <div className="modal-content" role="dialog" aria-modal="true" aria-label={team[modal].name}>
+          <div
+            className="modal-content"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="team-modal-name"
+          >
             <div className="relative h-72 md:h-96">
               <Image
                 src={team[modal].img}
                 alt={team[modal].name}
                 fill
+                sizes="640px"
                 className="object-cover object-top"
               />
               <button
@@ -113,7 +106,7 @@ export default function TeamSection() {
               </button>
             </div>
             <div className="p-8">
-              <h3 className="font-heading text-2xl font-black uppercase text-teal-dark mb-4">
+              <h3 id="team-modal-name" className="font-heading text-2xl font-black uppercase text-teal-dark mb-4">
                 {team[modal].name}
               </h3>
               <p className="text-gray-600 leading-relaxed text-sm">{team[modal].bio}</p>
