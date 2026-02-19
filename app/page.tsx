@@ -168,7 +168,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-8">
             <a href="/">
               <Image
-                src="/images/FivePlay_WoLogo-1024x633.png"
+                src="/images/FivePlay_WoLogo.png"
                 alt="Five Play"
                 width={140}
                 height={87}

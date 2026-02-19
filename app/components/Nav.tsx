@@ -23,7 +23,7 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="/" className="flex-shrink-0">
           <Image
-            src="/images/FivePlay_Logo-1024x633.png"
+            src="/images/FivePlay_Logo.png"
             alt="Five Play"
             width={120}
             height={74}
