@@ -43,7 +43,7 @@ export const services: Service[] = [
   },
   {
     title: 'Brand Strategy & Messaging',
-    img: '/images/hanbury-st.jpg',
+    img: '/images/elephant.jpg',
     body: "A brand is what a brand does which is why our focus is on getting under the skin of a company's actions, behaviours and beliefs. Invested in creating cultures, we work closely with clients on their values and tone of voice, brand strategies and creative programmes that help to increase awareness, change or reinforce perceptions and build customer loyalty and value.",
   },
   {
@@ -58,7 +58,7 @@ export const services: Service[] = [
   },
   {
     title: 'Media Training',
-    img: '/images/elephant.jpg',
+    img: '/images/images4.jpeg',
     body: 'Working with a team of experienced media experts, we offer extensive training for those who want to learn how to build their profile, effectively promote their brand or secure great coverage. In the media and influencer world, where first impressions last, we will arm you with the skills and confidence to deliver the very best result every time.',
   },
 ];
