@@ -1,26 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { caseStudies } from '@/lib/data';
+import { useModal } from '@/lib/useModal';
 
 export default function CaseStudiesSection() {
-  const [modal, setModal] = useState<number | null>(null);
-
-  useEffect(() => {
-    document.body.style.overflow = modal !== null ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [modal]);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setModal(null);
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, []);
+  const { modal, setModal } = useModal();
 
   return (
     <section id="case-studies" className="bg-surface py-24">
@@ -49,7 +34,13 @@ export default function CaseStudiesSection() {
               aria-label={`Read ${c.name} case study`}
             >
               <div className="relative h-36 flex items-center justify-center bg-white p-6 overflow-hidden">
-                <Image src={c.img} alt={c.name} fill className="object-contain p-4" />
+                <Image
+                  src={c.img}
+                  alt={c.name}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-contain p-4"
+                />
               </div>
               <div className="p-6 border-t border-gray-100">
                 <h3 className="font-heading text-lg font-black uppercase text-teal-dark mb-2 group-hover:text-teal transition-colors">
@@ -77,13 +68,14 @@ export default function CaseStudiesSection() {
             className="modal-content"
             role="dialog"
             aria-modal="true"
-            aria-label={caseStudies[modal].name}
+            aria-labelledby="case-modal-name"
           >
             <div className="relative h-48 bg-white flex items-center justify-center p-8">
               <Image
                 src={caseStudies[modal].img}
                 alt={caseStudies[modal].name}
                 fill
+                sizes="640px"
                 className="object-contain p-8"
               />
               <button
@@ -97,7 +89,7 @@ export default function CaseStudiesSection() {
               </button>
             </div>
             <div className="p-8 border-t border-gray-100">
-              <h3 className="font-heading text-2xl font-black uppercase text-teal-dark mb-4">
+              <h3 id="case-modal-name" className="font-heading text-2xl font-black uppercase text-teal-dark mb-4">
                 {caseStudies[modal].name}
               </h3>
               <p className="text-gray-600 leading-relaxed text-sm">{caseStudies[modal].body}</p>

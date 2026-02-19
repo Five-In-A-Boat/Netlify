@@ -10,11 +10,15 @@ export default function ContactForm() {
     setFormState('sending');
     const form = e.currentTarget;
     const data = new FormData(form);
+    const params = new URLSearchParams();
+    for (const [key, value] of data) {
+      if (typeof value === 'string') params.append(key, value);
+    }
     try {
       const res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+        body: params.toString(),
       });
       if (res.ok) {
         setFormState('sent');
