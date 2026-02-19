@@ -4,6 +4,7 @@ import TeamSection from '@/app/components/TeamSection';
 import CaseStudiesSection from '@/app/components/CaseStudiesSection';
 import ContactForm from '@/app/components/ContactForm';
 import ScrollReveal from '@/app/components/ScrollReveal';
+import CalendlyButton from '@/app/components/CalendlyButton';
 import { services, navLinks } from '@/lib/data';
 
 export default function Home() {
@@ -55,12 +56,7 @@ export default function Home() {
               Contact Us
             </a>
             {/* text-teal-dark on bg-teal: 6.4:1 contrast — passes WCAG AA */}
-            <a
-              href="#about-us"
-              className="px-8 py-4 bg-teal text-teal-dark font-heading font-bold text-lg uppercase tracking-wider hover:bg-teal-light transition-all duration-300"
-            >
-              Learn More
-            </a>
+            <CalendlyButton />
           </div>
         </div>
 
