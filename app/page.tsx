@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Nav from '@/app/components/Nav';
 import TeamSection from '@/app/components/TeamSection';
+import CaseStudiesSection from '@/app/components/CaseStudiesSection';
 import ContactForm from '@/app/components/ContactForm';
 import ScrollReveal from '@/app/components/ScrollReveal';
-import { services, caseStudies, navLinks } from '@/lib/data';
+import { services, navLinks } from '@/lib/data';
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -142,49 +143,7 @@ export default function Home() {
       <TeamSection />
 
       {/* ─── CASE STUDIES ─── */}
-      <section id="case-studies" className="bg-surface py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="reveal text-center mb-6">
-            <p className="text-teal font-heading text-sm font-bold uppercase tracking-[0.3em] mb-3">
-              Our Work
-            </p>
-            <h2 className="font-heading text-4xl md:text-6xl font-black uppercase text-teal-dark">
-              Case Studies
-            </h2>
-          </div>
-          <div className="reveal text-center mb-16">
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              A strategic games and esports consultancy that understands success will only come through
-              sustained hard work, high expectations, a shared goal and teamwork.
-            </p>
-          </div>
-
-          <div className="stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((c) => (
-              <a
-                key={c.name}
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="case-card bg-white rounded-lg overflow-hidden block group"
-              >
-                <div className="relative h-36 flex items-center justify-center bg-white p-6 overflow-hidden">
-                  <Image src={c.img} alt={c.name} fill className="object-contain p-4" />
-                </div>
-                <div className="p-6 border-t border-gray-100">
-                  <h3 className="font-heading text-lg font-black uppercase text-teal-dark mb-2 group-hover:text-teal transition-colors">
-                    {c.name}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">{c.excerpt}</p>
-                  <span className="text-teal text-sm font-semibold group-hover:underline">
-                    Read More →
-                  </span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CaseStudiesSection />
 
       {/* ─── CONTACT ─── */}
       <section id="contact-us" className="bg-white py-24">
