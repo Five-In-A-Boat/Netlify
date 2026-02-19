@@ -11,9 +11,9 @@ export default function ContactForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
     const params = new URLSearchParams();
-    for (const [key, value] of data) {
+    data.forEach((value, key) => {
       if (typeof value === 'string') params.append(key, value);
-    }
+    });
     try {
       const res = await fetch('/', {
         method: 'POST',
