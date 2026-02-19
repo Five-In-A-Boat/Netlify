@@ -19,7 +19,7 @@ export interface CaseStudy {
   name: string;
   img: string;
   excerpt: string;
-  href: string;
+  body: string;
 }
 
 export const navLinks: NavLink[] = [
@@ -91,56 +91,56 @@ export const caseStudies: CaseStudy[] = [
     name: 'No More Robots',
     img: '/images/no-more-robots-logo.png',
     excerpt:
-      "No More Robots engaged Five Play to strategise and execute a reputational growth campaign to showcase founder Mike Rose's thought leadership credentials. To date, we have secured strong regional coverage that has allowed us to secure national pieces – including with Tech Radar and The Yorkshire Post.",
-    href: 'https://www.fiveplay.com/no-more-robots/',
+      "No More Robots engaged Five Play to strategise and execute a reputational growth campaign to showcase founder Mike Rose's thought leadership credentials.",
+    body: "No More Robots engaged Five Play to strategise and execute a reputational growth campaign to showcase founder Mike Rose's thought leadership credentials. To date, we have secured strong regional coverage that has allowed us to secure national pieces – including with Tech Radar and The Yorkshire Post.",
   },
   {
     name: 'Lockwood Publishing',
     img: '/images/lkwd.jpg',
     excerpt:
       'Lockwood Publishing engaged Five Play as its B2B and B2C agency on a retainer basis to support the company with brand awareness and media relations across multiple campaigns.',
-    href: 'https://www.fiveplay.com/lockwood-publishing/',
+    body: "Lockwood Publishing engaged Five Play as its B2B and B2C agency on a retainer basis to support the company with structural changes, with increasing media awareness of its metaverse social game, Avakin Life, and with refreshing the company's overarching values, vision and mission. As a result of this work, Lockwood's Senior Director of Corporate Brand and Communications has been invited to speak on panels at key industry events, and brand coverage has been achieved in key gaming titles, giving Lockwood's CEO the opportunity to speak about how the company plans to move into Web3 and interoperability in the future.",
   },
   {
     name: 'Go Mate',
     img: '/images/mate.jpg',
     excerpt:
       'Five Play was engaged by Go Mate on the run up to the launch of its all-natural energy drink product – building brand awareness and driving consumer and trade media coverage.',
-    href: 'https://www.fiveplay.com/go-mate/',
+    body: 'Five Play was engaged by Go Mate on the run up to the launch of its all-natural energy drink product – aimed at the competitive and casual gaming market. From leveraging B2B credentials and securing thought leadership opportunities alongside the creation of long-form academic pieces on ingredients and company strategy, to securing reviews, launch coverage and influencer partnerships – Five Play has ensured that Go Mate products are front of mind for consumers and respected by industry peers. The remit has recently been expanded to also include community management.',
   },
   {
     name: 'Arctic7',
     img: '/images/arctic7.jpg',
     excerpt:
       'Arctic7 engaged Five Play as its B2B and B2C agency on a retainer basis to support multiple activity streams including brand awareness, product launches and corporate communications.',
-    href: 'https://www.fiveplay.com/arctic7/',
+    body: 'Arctic7 engaged Five Play as its B2B and B2C agency on a retainer basis to support multiple activity streams including raising the profile of the founders, promoting its studio launches, maximising funding opportunities and maintaining a lights on approach to its communications outreach. To date, the CEO has since been approached by potential investors and as a keynote speaker at high profile events, positive coverage of the brand has been continuously achieved in major gaming titles and interviews have been secured with generalist media including Forbes.',
   },
   {
     name: 'Antstream Arcade',
     img: '/images/antstream-arcade.jpg',
     excerpt:
       "Antstream originally engaged Five in a Boat as its B2B communications agency with a view to raising the profile of the world's largest streaming service for retro games.",
-    href: 'https://www.fiveplay.com/antstream-arcade/',
+    body: 'Antstream originally engaged Five in a Boat as its B2B communications agency with a view to raising the profile of the brand in vertical media. Off the back of a successful trial period with major coverage and executive profiling achieved in major tech, telco and gaming titles, Antstream expanded our remit to include B2C outreach. One of the signature pieces of coverage also drove significant customer sign-ups to the company\'s newly launched freemium tier.',
   },
   {
     name: 'Challengermode',
     img: '/images/challengermode.jpg',
     excerpt:
       'Swedish esports brand Challengermode originally engaged us to publicise its $12 million Series A investment round, leading to sustained brand growth across key markets.',
-    href: 'https://www.fiveplay.com/challengermode/',
+    body: 'Swedish esports brand Challengermode originally engaged us to publicise its $12 million Series A investment round. Following a signature piece in Forbes, alongside multiple other pieces of coverage, the exec team hired us on a retained basis. To date we have written Challengermode\'s brand guide and a number of internal decks and support the business on all elements of its external communications.',
   },
   {
     name: 'Jagex',
     img: '/images/X-jagex-1.jpg',
     excerpt:
-      'We were originally contracted by Jagex to support with media training and messaging for the launch of its third major IP – a relationship that expanded into full-service PR.',
-    href: 'https://www.fiveplay.com/jagex/',
+      'We were originally contracted by Jagex to support with media training and messaging for the launch of its third party development platform Jagex Partners.',
+    body: 'We were originally contracted by Jagex to support with some media training and messaging for the launch of its third party development platform Jagex Partners. We have since supported Jagex with a DCMS enquiry into gaming addiction and immersive technologies, with its acquisition by The Carlyle Group, we have rewritten the company\'s brand guide and are its retained corporate communications agency. We also won the brief to run the hub function of first game to be published on the platform managing a host of other agencies globally in addition to communications outreach in Germany.',
   },
   {
-    name: 'JXP Partners',
+    name: 'Jagex Partners',
     img: '/images/jagex-partners-logo-248x300.png',
     excerpt:
-      'We launched the JXP proposition as a unique alternative for third party publishing groups within video games. Five Play generated coverage in key games titles, increased social engagement and secured speaking spots – culminating in the signing of three new development partners.',
-    href: 'https://www.fiveplay.com/jxp-partners/',
+      'We launched the Jagex Partners proposition as a unique alternative for third party publishing groups within video games, culminating in the signing of three new development partners.',
+    body: 'We launched the Jagex Partners proposition as a unique alternative for third party publishing groups within video games (aimed at indie developers), raising awareness of Jagex Partners\' overall publishing capabilities within the industry and supporting with press outreach around Jagex Partners\' titles. Whilst acting as hub agency for all regions, Five Play generated coverage in key games titles, increased social engagement and secured speaking spots – culminating in increased customer acquisition and the signing of three new development partners.',
   },
 ];
