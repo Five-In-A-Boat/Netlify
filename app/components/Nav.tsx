@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { navLinks, WP } from '@/lib/data';
+import { navLinks } from '@/lib/data';
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +23,7 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="/" className="flex-shrink-0">
           <Image
-            src={`${WP}/2022/11/FivePlay_Logo-1024x633.png`}
+            src="/images/FivePlay_Logo-1024x633.png"
             alt="Five Play"
             width={120}
             height={74}

@@ -3,7 +3,7 @@ import Nav from '@/app/components/Nav';
 import TeamSection from '@/app/components/TeamSection';
 import ContactForm from '@/app/components/ContactForm';
 import ScrollReveal from '@/app/components/ScrollReveal';
-import { WP, services, caseStudies, navLinks } from '@/lib/data';
+import { services, caseStudies, navLinks } from '@/lib/data';
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -17,7 +17,7 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src={`${WP}/2022/11/diogo-fagundes-K0cW669UQH0-unsplash.jpg`}
+            src="/images/diogo-fagundes-K0cW669UQH0-unsplash.jpg"
             alt="Hero background"
             fill
             className="object-cover object-center"
@@ -73,7 +73,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
           <div className="reveal from-left relative min-h-[500px] lg:min-h-[600px]">
             <Image
-              src={`${WP}/2022/11/diogo-fagundes-K0cW669UQH0-unsplash.jpg`}
+              src="/images/diogo-fagundes-K0cW669UQH0-unsplash.jpg"
               alt="Five Play office"
               fill
               className="object-cover"
@@ -209,7 +209,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-8">
             <a href="/">
               <Image
-                src={`${WP}/2022/11/FivePlay_WoLogo-1024x633.png`}
+                src="/images/FivePlay_WoLogo-1024x633.png"
                 alt="Five Play"
                 width={140}
                 height={87}
