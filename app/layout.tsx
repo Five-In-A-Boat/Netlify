@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: 'Five Play | Gaming & Esports PR',
   description:
     'Five Play is the gaming division of Five in a Boat – a strategic communications consultancy for gaming and esports brands.',
+  icons: {
+    icon: '/favicon.png',
+  },
   openGraph: {
     title: 'Five Play | Gaming & Esports PR',
     description:
