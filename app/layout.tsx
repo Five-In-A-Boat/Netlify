@@ -32,6 +32,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
+      <head>
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+      </head>
       <body className="font-body antialiased">{children}</body>
     </html>
   );
