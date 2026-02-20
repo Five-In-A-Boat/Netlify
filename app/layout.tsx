@@ -38,6 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+      </head>
+      <body className="font-body antialiased">
         <Script
           id="cookiebot"
           src="https://consent.cookiebot.com/uc.js"
@@ -45,9 +48,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           data-blockingmode="auto"
           strategy="beforeInteractive"
         />
-        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
-      </head>
-      <body className="font-body antialiased">
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MTLNQ2NT"
