@@ -33,32 +33,32 @@ export const navLinks: NavLink[] = [
 export const services: Service[] = [
   {
     title: 'Events & Launches',
-    img: '/images/images4.jpeg',
+    img: '/images/image_elite02_ls.avif',
     body: 'Product launches and events are central to what we do. Delivering bespoke experiences that meet the needs of a variety of different brands, we take a personal approach to every brief. Be it a corporate party, a product launch or a round table event, we create campaigns that both tell an engaging story and that capture the hearts and minds of your audience.',
   },
   {
     title: 'Influencer Engagement',
-    img: '/images/web_header___amara_and_kris_492x209__false__true.jpg',
+    img: '/images/image_wipeout_sq.avif',
     body: 'We believe that content is king and that advocacy is key to delivering brand engagement and trust. We have an extensive network of influencers across multiple sectors with which we have built long-term relationships. Our focus is on integrating influencer relations into a broader communications programme to build communities which drive business growth.',
   },
   {
     title: 'Brand Strategy & Messaging',
-    img: '/images/elephant.jpg',
+    img: '/images/image_burnout_sq.avif',
     body: "A brand is what a brand does which is why our focus is on getting under the skin of a company's actions, behaviours and beliefs. Invested in creating cultures, we work closely with clients on their values and tone of voice, brand strategies and creative programmes that help to increase awareness, change or reinforce perceptions and build customer loyalty and value.",
   },
   {
     title: 'Media Relations & Storytelling',
-    img: '/images/East-Busway-Photo-by-PGH-Murals-800x520-1.jpg',
+    img: '/images/image_manic_sq.avif',
     body: 'We pride ourselves on our media relationships which have been built over many years. Recognising that a one size fits all approach does not work, we craft each story individually in a way that meets the business needs of the brand, the journalist who is writing it and the person who is reading it. Every great moment starts with a great story.',
   },
   {
     title: 'Reputation Management',
-    img: '/images/99b2bf6b15e99d47d3b1cba.jpeg',
+    img: '/images/image_lemmings_sq.avif',
     body: 'With a proven track record in protecting and enhancing the reputation of brands and business leaders, we are experts in analysing reputational needs and in building strategic programmes that deliver optimal results. Part of this includes identifying issues before they arise so that we can stay one step ahead of what is happening around us.',
   },
   {
     title: 'Media Training',
-    img: '/images/images4.jpeg',
+    img: '/images/image_arkham_pt.avif',
     body: 'Working with a team of experienced media experts, we offer extensive training for those who want to learn how to build their profile, effectively promote their brand or secure great coverage. In the media and influencer world, where first impressions last, we will arm you with the skills and confidence to deliver the very best result every time.',
   },
 ];
