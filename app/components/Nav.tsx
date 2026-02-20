@@ -22,12 +22,24 @@ export default function Nav() {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="/" className="flex-shrink-0">
+          {/* Mobile: clip container to hide the "FIVE PLAY" wordmark at bottom of image */}
+          <div className="md:hidden overflow-hidden h-[48px]">
+            <Image
+              src="/images/FivePlay_Logo.png"
+              alt="Five Play"
+              width={120}
+              height={74}
+              className={`transition-all duration-300 ${scrolled ? '' : 'brightness-0 invert'}`}
+              priority
+            />
+          </div>
+          {/* Desktop: full logo with wordmark */}
           <Image
             src="/images/FivePlay_Logo.png"
             alt="Five Play"
             width={120}
             height={74}
-            className={`transition-all duration-300 ${scrolled ? '' : 'brightness-0 invert'}`}
+            className={`hidden md:block transition-all duration-300 ${scrolled ? '' : 'brightness-0 invert'}`}
             priority
           />
         </a>
