@@ -19,7 +19,7 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/diogo-fagundes-K0cW669UQH0-unsplash.jpg"
+            src="/images/image_gta01_ls.avif"
             alt="Hero background"
             fill
             sizes="100vw"
