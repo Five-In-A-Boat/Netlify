@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Barlow_Condensed, Inter } from 'next/font/google';
 import './globals.css';
+import CrispChat from '@/app/components/CrispChat';
 
 const barlowCondensed = Barlow_Condensed({
   subsets: ['latin'],
@@ -38,7 +39,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        {children}
+        <CrispChat />
+      </body>
     </html>
   );
 }
