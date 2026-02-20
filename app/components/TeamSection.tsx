@@ -19,38 +19,12 @@ export default function TeamSection() {
           </h2>
         </div>
 
-        {/* Jules – featured */}
-        <div className="reveal flex justify-center mb-16">
-          <button
-            className="team-card text-center w-64 md:w-80"
-            onClick={() => setModal(0)}
-            aria-label={`Read ${team[0].name}'s bio`}
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl mb-4 aspect-square">
-              <Image
-                src={team[0].img}
-                alt={team[0].name}
-                fill
-                sizes="(min-width: 768px) 320px, 256px"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-teal/0 hover:bg-teal/10 transition-colors duration-300 flex items-end justify-center pb-6 opacity-0 hover:opacity-100">
-                <span className="text-white font-heading font-bold text-sm uppercase tracking-wider bg-teal px-4 py-2 rounded">
-                  Read Bio
-                </span>
-              </div>
-            </div>
-            <h3 className="font-heading text-2xl font-black uppercase text-teal-dark">{team[0].name}</h3>
-          </button>
-        </div>
-
-        {/* Sarah, Jack, Ross */}
-        <div className="stagger grid grid-cols-1 md:grid-cols-3 gap-10">
-          {team.slice(1).map((member, i) => (
+        <div className="stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {team.map((member, i) => (
             <button
               key={member.name}
               className="team-card text-center"
-              onClick={() => setModal(i + 1)}
+              onClick={() => setModal(i)}
               aria-label={`Read ${member.name}'s bio`}
             >
               <div className="relative rounded-2xl overflow-hidden shadow-lg mb-4 aspect-square">
@@ -58,7 +32,7 @@ export default function TeamSection() {
                   src={member.img}
                   alt={member.name}
                   fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 flex items-end justify-center pb-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
