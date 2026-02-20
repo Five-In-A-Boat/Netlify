@@ -19,7 +19,7 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/image_gta04_ls.avif"
+            src="/images/image_gta01_ls.avif"
             alt="Hero background"
             fill
             sizes="100vw"
@@ -72,7 +72,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
           <div className="reveal from-left relative min-h-[500px] lg:min-h-[600px]">
             <Image
-              src="/images/diogo-fagundes-K0cW669UQH0-unsplash.jpg"
+              src="/images/image_tomb_sq.avif"
               alt="Five Play office"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
