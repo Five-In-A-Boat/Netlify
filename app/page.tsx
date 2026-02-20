@@ -72,7 +72,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2">
           <div className="reveal from-left relative min-h-[500px] lg:min-h-[600px]">
             <Image
-              src="/images/diogo-fagundes-K0cW669UQH0-unsplash.jpg"
+              src="/images/image_tomb_sq.avif"
               alt="Five Play office"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
