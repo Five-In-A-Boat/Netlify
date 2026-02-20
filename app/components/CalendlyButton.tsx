@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-const CALENDLY_URL = 'https://calendly.com/jules-fiveinaboat';
+const CALENDLY_URL = 'https://calendly.com/jules-fiveinaboat/30min?hide_gdpr_banner=1';
 
 export default function CalendlyButton() {
   function openCalendly() {
