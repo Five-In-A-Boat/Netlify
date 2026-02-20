@@ -66,22 +66,22 @@ export const services: Service[] = [
 export const team: TeamMember[] = [
   {
     name: 'Jules, CMPRCA',
-    img: '/images/jules_new.png',
+    img: '/images/team_jules_sq.avif',
     bio: "With 20+ years in the industry, and as the former Global VP of Comms for both HTC and Deezer, Jules is a seasoned brand communications expert who quickly gets to the heart of what a company needs to deliver business growth. A strategic thinker with a hands on attitude, she adopts an omni-channel approach to building communications strategies and creative campaigns that deliver strong awareness and engagement. She also knows how to turn the complicated into the easy. Ultimately she wants to work for companies where she can help shape their future. Jules is currently the Chair of the Public Relations & Communications Association Council (CMPRCA).",
   },
   {
     name: 'Sarah',
-    img: '/images/2.png',
+    img: '/images/team_sarah_sq.avif',
     bio: "As FIAB's lead for Germany, Sarah Schindler has worked in entertainment, tech and culture for more than fifteen years as both a freelancer and a journalist. Her heart beats for good stories, convincing products and strategies that satisfy partners as well as media outlets and readers. When she is not on (business) trips, she works from Cologne, Germany, where she's always on the lookout for new ice cream inspirations, watches tons of (mostly good) movies and plays story driven video games.",
   },
   {
     name: 'Jack',
-    img: '/images/jack_new.png',
+    img: '/images/team_jack_sq.avif',
     bio: 'Jack has worked in the PR and Branding space for the past nine years – focusing mostly on transformative tech and video games. In these roles, Jack has overseen product launch campaigns, crisis communications, long term strategic planning and brand building. Before that, Jack worked as a journalist for a national newspaper in the UAE and also spent a spell in the French Alps as a chef. Away from work, Jack is an avid snowboarder and cook – and is also a huge fan of video games.',
   },
   {
     name: 'Ross',
-    img: '/images/ross_new.png',
+    img: '/images/team_ross_sq.avif',
     bio: 'Ross started his PR journey in the property industry, amassing four years of experience there before joining Five in a Boat, where he could follow his true passions in video games and tech. He has helped secure coverage across the video game, EV and health-tech industry in the national press. Originally from South Africa, Ross has lived in India, the Netherlands and now the UK. Outside of work, Ross is a huge sports fan – regularly attending his beloved Arsenal play in the Premier League.',
   },
 ];
