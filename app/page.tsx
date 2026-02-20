@@ -30,7 +30,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-          <p className="text-teal font-heading text-xl font-bold uppercase tracking-[0.3em] mb-6 animate-fadeIn">
+          <p className="hidden sm:block text-teal font-heading text-xl font-bold uppercase tracking-[0.3em] mb-6 animate-fadeIn">
             Five Play
           </p>
           <h1 className="hero-headline font-heading text-5xl md:text-7xl lg:text-8xl text-white font-black uppercase leading-none mb-8 animate-fadeUp">
