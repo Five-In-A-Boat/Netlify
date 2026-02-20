@@ -53,7 +53,7 @@ export const services: Service[] = [
   },
   {
     title: 'Reputation Management',
-    img: '/images/image_lemmings_sq.avif',
+    img: '/images/image_lemming_sq.avif',
     body: 'With a proven track record in protecting and enhancing the reputation of brands and business leaders, we are experts in analysing reputational needs and in building strategic programmes that deliver optimal results. Part of this includes identifying issues before they arise so that we can stay one step ahead of what is happening around us.',
   },
   {
