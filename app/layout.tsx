@@ -38,6 +38,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
+        {/* Cookiebot loads via next/script beforeInteractive — server-injected
+            into <head>, runs before hydration, independent of GTM.
+            We keep a single canonical uc.js URL that includes cbid to avoid
+            accidental duplicate loader insertion in stricter browsers. */}
+        <script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js?cbid=b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839&implementation=gtm&consentmode-dataredaction=dynamic"
+          data-blockingmode="auto"
+          async
+        />
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="font-body antialiased">
@@ -52,14 +62,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <CrispChat />
         <Script
-          id="gtm"
+          id="gtm-loader"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MTLNQ2NT');`,
+            __html: `
+              (function(w,d,l,i){
+                w[l]=w[l]||[];
+
+                function hasConsent(){
+                  var cb=w.Cookiebot;
+                  return !!(cb && cb.consent && (cb.consent.statistics || cb.consent.marketing));
+                }
+
+                function loadGTM(){
+                  if (w.__gtmLoaded) return;
+                  w.__gtmLoaded = true;
+                  w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+                  var f=d.getElementsByTagName('script')[0], j=d.createElement('script');
+                  j.async=true;
+                  j.src='https://www.googletagmanager.com/gtm.js?id='+i;
+                  f.parentNode.insertBefore(j,f);
+                }
+
+                if (hasConsent()) loadGTM();
+                w.addEventListener('CookiebotOnConsentReady', function(){ if (hasConsent()) loadGTM(); });
+                w.addEventListener('CookiebotOnAccept', loadGTM);
+              })(window,document,'dataLayer','GTM-MTLNQ2NT');
+            `,
           }}
         />
       </body>
