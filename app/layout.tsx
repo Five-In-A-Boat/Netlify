@@ -38,9 +38,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
-        {/* Cookiebot uc.js is injected as the first <head> script by the
-            Netlify Edge Function (netlify/edge-functions/inject-cookiebot.ts)
-            so it loads synchronously before any Next.js-injected scripts. */}
+        {/* Cookiebot loads via next/script beforeInteractive — server-injected
+            into <head>, runs before hydration, independent of GTM.
+            This ensures the dialog works even when GTM is blocked (Brave, uBlock).
+            The ?implementation=gtm param lets Cookiebot push consent signals to
+            window.dataLayer so GTM consent mode picks them up when/if it loads. */}
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js?implementation=gtm&consentmode-dataredaction=dynamic"
+          data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839"
+          strategy="beforeInteractive"
+        />
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="font-body antialiased">
