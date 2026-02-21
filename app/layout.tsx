@@ -38,13 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
-        <script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839"
-          data-blockingmode="auto"
-          type="text/javascript"
-        />
+        {/* Cookiebot uc.js is injected as the first <head> script by the
+            Netlify Edge Function (netlify/edge-functions/inject-cookiebot.ts)
+            so it loads synchronously before any Next.js-injected scripts. */}
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="font-body antialiased">
