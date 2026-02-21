@@ -16,7 +16,12 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     # Next.js App Router requires 'unsafe-inline' for its bootstrap scripts and React inline styles
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://client.crisp.chat; style-src 'self' 'unsafe-inline' https://assets.calendly.com https://client.crisp.chat; img-src 'self' data: blob: https://image.crisp.chat https://storage.crisp.chat https://client.crisp.chat; font-src 'self' https://client.crisp.chat; connect-src 'self' https://calendly.com https://client.crisp.chat wss://client.relay.crisp.chat https://storage.crisp.chat; frame-src https://calendly.com https://game.crisp.chat; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://client.crisp.chat https://consent.cookiebot.com https://consentcdn.cookiebot.com https://www.googletagmanager.com https://www.google-analytics.com https://tagmanager.google.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com https://client.crisp.chat https://consentcdn.cookiebot.com; img-src 'self' data: blob: https://image.crisp.chat https://storage.crisp.chat https://client.crisp.chat https://www.googletagmanager.com https://www.google-analytics.com; font-src 'self' https://client.crisp.chat; connect-src 'self' https://calendly.com https://client.crisp.chat wss://client.relay.crisp.chat https://storage.crisp.chat https://consent.cookiebot.com https://consentcdn.cookiebot.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; frame-src https://calendly.com https://game.crisp.chat https://consentcdn.cookiebot.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none';"
+
+# Inject Cookiebot as the first script in <head> on all HTML pages
+[[edge_functions]]
+  path = "/*"
+  function = "inject-cookiebot"
 
 # Hashed Next.js chunks are immutable — safe to cache for 1 year
 [[headers]]
