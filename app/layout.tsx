@@ -38,16 +38,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
-        {/* Cookiebot must load directly — not via GTM — so it works even
-            when GTM is blocked by privacy browsers (Brave, uBlock, etc.).
-            The ?implementation=gtm param makes Cookiebot push consent signals
-            to window.dataLayer so GTM picks them up when/if it loads. */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
+        {/* Cookiebot loads via next/script beforeInteractive — server-injected
+            into <head>, runs before hydration, independent of GTM.
+            This ensures the dialog works even when GTM is blocked (Brave, uBlock).
+            The ?implementation=gtm param lets Cookiebot push consent signals to
+            window.dataLayer so GTM consent mode picks them up when/if it loads. */}
+        <Script
           id="Cookiebot"
           src="https://consent.cookiebot.com/uc.js?implementation=gtm&consentmode-dataredaction=dynamic"
           data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839"
-          type="text/javascript"
+          strategy="beforeInteractive"
         />
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
