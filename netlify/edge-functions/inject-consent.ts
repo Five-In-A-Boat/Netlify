@@ -34,11 +34,14 @@ const CONSENT_SCRIPTS =
   `gtag('set','url_passthrough',true);` +
   `</script>` +
 
+  // GTM snippet: use d.head.appendChild instead of insertBefore(firstScript)
+  // so gtm.js is appended AFTER our three consent scripts in the DOM,
+  // not before google-consent-defaults (which is what insertBefore causes).
   `<script id="gtm" data-cookieconsent="ignore">` +
   `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':` +
-  `new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],` +
+  `new Date().getTime(),event:'gtm.js'});var ` +
   `j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=` +
-  `'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);` +
+  `'https://www.googletagmanager.com/gtm.js?id='+i+dl;d.head.appendChild(j);` +
   `})(window,document,'script','dataLayer','GTM-MTLNQ2NT');` +
   `</script>` +
 
