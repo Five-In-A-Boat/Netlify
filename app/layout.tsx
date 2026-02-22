@@ -38,28 +38,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
         {/*
-          The three Cookiebot hybrid-setup scripts (Consent Mode defaults, GTM,
-          and Cookiebot uc.js) are injected as the very first <head> children by
+          VANILLA COOKIEBOT-ONLY mode.
+          The two critical scripts (Consent Mode defaults + Cookiebot uc.js) are
+          injected as the very first <head> children by
           netlify/edge-functions/inject-consent.ts.
-
-          They cannot live here: Next.js App Router always prepends <meta charset>,
-          <meta viewport>, and font preloads before any component-level <head>
-          content, regardless of whether plain <script> or <Script> is used.
-          The Netlify Edge Function rewrites the raw HTML at the CDN edge and
-          is the only mechanism that guarantees true first-in-head placement.
+          No GTM in this build — GTM will be reintroduced once the banner is
+          confirmed working.
         */}
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="font-body antialiased">
-        {/* GTM no-JS fallback */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-MTLNQ2NT"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
         {children}
         <CrispChat />
       </body>
