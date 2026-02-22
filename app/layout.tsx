@@ -38,17 +38,68 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
-        {/* Cookiebot loads via next/script beforeInteractive — server-injected
-            into <head>, runs before hydration, independent of GTM.
-            This ensures the dialog works even when GTM is blocked (Brave, uBlock).
-            The ?implementation=gtm param lets Cookiebot push consent signals to
-            window.dataLayer so GTM consent mode picks them up when/if it loads. */}
+        {/* ── Official Cookiebot hybrid setup (consent defaults → GTM → auto-blocking) ──
+            Source: https://support.cookiebot.com/hc/en-us/articles/360009192739
+            "Combine the use of Google Tag Manager with automated cookie blocking
+             by Cookiebot to get the best of both worlds."
+            Order matters: (1) consent defaults, (2) GTM, (3) Cookiebot auto-blocking.
+            data-cookieconsent="ignore" prevents the auto-blocker from blocking
+            the consent-defaults and GTM scripts themselves. */}
+
+        {/* 1. Google Consent Mode v2 defaults — must load before GTM so Google
+               tags know the initial consent state is "denied" for everything. */}
+        <Script
+          id="google-consent-defaults"
+          strategy="beforeInteractive"
+          data-cookieconsent="ignore"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                'ad_storage': 'denied',
+                'ad_user_data': 'denied',
+                'ad_personalization': 'denied',
+                'analytics_storage': 'denied',
+                'functionality_storage': 'denied',
+                'personalization_storage': 'denied',
+                'security_storage': 'granted',
+                'wait_for_update': 500
+              });
+              gtag('set', 'ads_data_redaction', true);
+              gtag('set', 'url_passthrough', true);
+            `,
+          }}
+        />
+
+        {/* 2. Google Tag Manager — loads before Cookiebot auto-blocking so the
+               container is available, but after consent defaults so tags respect
+               the denied-by-default state. */}
+        <Script
+          id="gtm"
+          strategy="beforeInteractive"
+          data-cookieconsent="ignore"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MTLNQ2NT');`,
+          }}
+        />
+
+        {/* 3. Cookiebot CMP with auto-blocking — banner + automatic script firewall.
+               Auto-blocking intercepts non-GTM scripts (Crisp, Calendly, etc.)
+               and blocks them until consent is given. No manual data-cookieconsent
+               markup needed on individual scripts. */}
         <Script
           id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js?implementation=gtm&consentmode-dataredaction=dynamic"
+          src="https://consent.cookiebot.com/uc.js"
           data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839"
+          data-blockingmode="auto"
           strategy="beforeInteractive"
         />
+
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="font-body antialiased">
@@ -62,17 +113,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </noscript>
         {children}
         <CrispChat />
-        <Script
-          id="gtm"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MTLNQ2NT');`,
-          }}
-        />
       </body>
     </html>
   );
