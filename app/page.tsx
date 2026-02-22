@@ -7,7 +7,7 @@ import ScrollReveal from '@/app/components/ScrollReveal';
 import CalendlyButton from '@/app/components/CalendlyButton';
 import LiveChatButton from '@/app/components/LiveChatButton';
 import ServicesSection from '@/app/components/ServicesSection';
-import { navLinks } from '@/lib/data';
+import FooterNav from '@/app/components/FooterNav';
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -144,25 +144,7 @@ export default function Home() {
               />
             </a>
 
-            <nav className="flex flex-wrap justify-center gap-x-8 gap-y-2">
-              {navLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  className="text-white/80 hover:text-teal text-sm font-semibold uppercase tracking-wide transition-colors duration-200"
-                >
-                  {l.label}
-                </a>
-              ))}
-              <a
-                href="https://www.fiveinaboat.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/80 hover:text-teal text-sm font-semibold uppercase tracking-wide transition-colors duration-200"
-              >
-                Visit Five in a Boat
-              </a>
-            </nav>
+            <FooterNav />
 
             {/* text-white/75 on bg-teal-dark: ≈5.5:1 contrast — passes WCAG AA */}
             <p className="text-white/75 text-sm text-center">

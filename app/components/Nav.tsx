@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { navLinks } from '@/lib/data';
+import { pushEvent } from '@/lib/analytics';
 
 const CALENDLY_URL = 'https://calendly.com/jules-fiveinaboat/30min?hide_gdpr_banner=1';
 
 function openCalendly() {
+  pushEvent('book_meeting_click', { location: 'header' });
   (window as Window & { Calendly?: { initPopupWidget: (o: { url: string }) => void } })
     .Calendly?.initPopupWidget({ url: CALENDLY_URL });
 }
@@ -28,7 +30,11 @@ export default function Nav() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="/" className="flex-shrink-0">
+        <a
+          href="/"
+          className="flex-shrink-0"
+          onClick={() => pushEvent('nav_click', { link_text: 'FivePlay Logo', location: 'header' })}
+        >
           <Image
             src="/images/FivePlay_Logo.png"
             alt="Five Play"
@@ -44,6 +50,7 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
+              onClick={() => pushEvent('nav_click', { link_text: l.label, location: 'header' })}
               className={`px-4 py-2 text-sm font-semibold uppercase tracking-wide transition-colors duration-200 hover:text-teal ${
                 scrolled ? 'text-gray-800' : 'text-white'
               }`}
@@ -82,7 +89,10 @@ export default function Nav() {
             <a
               key={l.href}
               href={l.href}
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                setMenuOpen(false);
+                pushEvent('nav_click', { link_text: l.label, location: 'header_mobile' });
+              }}
               className="text-white font-semibold uppercase tracking-wide text-sm py-1 border-b border-white/10"
             >
               {l.label}
