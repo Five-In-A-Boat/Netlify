@@ -4,6 +4,13 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { navLinks } from '@/lib/data';
 
+const CALENDLY_URL = 'https://calendly.com/jules-fiveinaboat/30min?hide_gdpr_banner=1';
+
+function openCalendly() {
+  (window as Window & { Calendly?: { initPopupWidget: (o: { url: string }) => void } })
+    .Calendly?.initPopupWidget({ url: CALENDLY_URL });
+}
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -44,14 +51,13 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href="https://www.fiveinaboat.com/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={openCalendly}
             className="ml-4 px-5 py-2.5 bg-teal text-white text-sm font-bold uppercase tracking-wide rounded hover:bg-teal-light transition-colors duration-200"
           >
-            Visit Five in a Boat
-          </a>
+            Book Meeting
+          </button>
         </nav>
 
         <button
@@ -82,14 +88,13 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href="https://www.fiveinaboat.com/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => { setMenuOpen(false); openCalendly(); }}
             className="mt-2 text-center px-5 py-2.5 bg-teal text-white text-sm font-bold uppercase tracking-wide rounded"
           >
-            Visit Five in a Boat
-          </a>
+            Book Meeting
+          </button>
         </div>
       )}
     </header>

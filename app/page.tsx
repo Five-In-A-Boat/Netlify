@@ -5,6 +5,7 @@ import CaseStudiesSection from '@/app/components/CaseStudiesSection';
 import ContactForm from '@/app/components/ContactForm';
 import ScrollReveal from '@/app/components/ScrollReveal';
 import CalendlyButton from '@/app/components/CalendlyButton';
+import LiveChatButton from '@/app/components/LiveChatButton';
 import { services, navLinks } from '@/lib/data';
 
 export default function Home() {
@@ -46,12 +47,7 @@ export default function Home() {
             className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeUp"
             style={{ animationDelay: '0.4s' }}
           >
-            <a
-              href="#contact-us"
-              className="px-8 py-4 border-2 border-white text-white font-heading font-bold text-lg uppercase tracking-wider hover:bg-white hover:text-teal-dark transition-all duration-300"
-            >
-              Contact Us
-            </a>
+            <LiveChatButton />
             {/* text-teal-dark on bg-teal: 6.4:1 contrast — passes WCAG AA */}
             <CalendlyButton />
           </div>
