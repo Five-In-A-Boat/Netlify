@@ -1,11 +1,24 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { team } from '@/lib/data';
 import { useModal } from '@/lib/useModal';
+import { pushEvent } from '@/lib/analytics';
 
 export default function TeamSection() {
   const { modal, setModal } = useModal();
+  const prevModal = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (prevModal.current !== null && modal === null) {
+      pushEvent('modal_close', { modal_name: team[prevModal.current].name, section: 'team' });
+    }
+    if (modal !== null && prevModal.current === null) {
+      pushEvent('modal_open', { modal_name: team[modal].name, section: 'team' });
+    }
+    prevModal.current = modal;
+  }, [modal]);
 
   return (
     <section id="our-team" className="bg-white py-24">

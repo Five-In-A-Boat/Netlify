@@ -1,11 +1,24 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { services } from '@/lib/data';
 import { useModal } from '@/lib/useModal';
+import { pushEvent } from '@/lib/analytics';
 
 export default function ServicesSection() {
   const { modal, setModal } = useModal();
+  const prevModal = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (prevModal.current !== null && modal === null) {
+      pushEvent('modal_close', { modal_name: services[prevModal.current].title, section: 'services' });
+    }
+    if (modal !== null && prevModal.current === null) {
+      pushEvent('modal_open', { modal_name: services[modal].title, section: 'services' });
+    }
+    prevModal.current = modal;
+  }, [modal]);
 
   return (
     <section id="we-do" className="bg-surface py-24">

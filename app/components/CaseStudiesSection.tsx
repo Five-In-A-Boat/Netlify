@@ -1,11 +1,24 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { caseStudies } from '@/lib/data';
 import { useModal } from '@/lib/useModal';
+import { pushEvent } from '@/lib/analytics';
 
 export default function CaseStudiesSection() {
   const { modal, setModal } = useModal();
+  const prevModal = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (prevModal.current !== null && modal === null) {
+      pushEvent('modal_close', { modal_name: caseStudies[prevModal.current].name, section: 'case_studies' });
+    }
+    if (modal !== null && prevModal.current === null) {
+      pushEvent('modal_open', { modal_name: caseStudies[modal].name, section: 'case_studies' });
+    }
+    prevModal.current = modal;
+  }, [modal]);
 
   return (
     <section id="case-studies" className="bg-surface py-24">

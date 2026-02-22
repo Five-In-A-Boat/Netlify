@@ -1,7 +1,10 @@
 'use client';
 
+import { pushEvent } from '@/lib/analytics';
+
 export default function LiveChatButton() {
   function openChat() {
+    pushEvent('crisp_opened', { location: 'hero' });
     (window as Window & { $crisp?: unknown[] }).$crisp?.push(['do', 'chat:open']);
   }
 

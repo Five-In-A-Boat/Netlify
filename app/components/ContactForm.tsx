@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { pushEvent, hashEmail } from '@/lib/analytics';
 
 export default function ContactForm() {
   const [formState, setFormState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const formStarted = useRef(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -21,12 +23,18 @@ export default function ContactForm() {
         body: params.toString(),
       });
       if (res.ok) {
+        const emailEl = form.elements.namedItem('email') as HTMLInputElement;
+        const user_id = await hashEmail(emailEl.value);
+        pushEvent('form_submit', { form_name: 'contact', user_id });
         setFormState('sent');
         form.reset();
+        formStarted.current = false;
       } else {
+        pushEvent('form_error', { form_name: 'contact' });
         setFormState('error');
       }
     } catch {
+      pushEvent('form_error', { form_name: 'contact' });
       setFormState('error');
     }
   }
@@ -59,6 +67,12 @@ export default function ContactForm() {
           data-netlify="true"
           netlify-honeypot="bot-field"
           onSubmit={handleSubmit}
+          onFocus={() => {
+            if (!formStarted.current) {
+              formStarted.current = true;
+              pushEvent('form_start', { form_name: 'contact' });
+            }
+          }}
           className="space-y-5"
         >
           <input type="hidden" name="form-name" value="contact" />
