@@ -6,7 +6,8 @@ import ContactForm from '@/app/components/ContactForm';
 import ScrollReveal from '@/app/components/ScrollReveal';
 import CalendlyButton from '@/app/components/CalendlyButton';
 import LiveChatButton from '@/app/components/LiveChatButton';
-import { services, navLinks } from '@/lib/data';
+import ServicesSection from '@/app/components/ServicesSection';
+import { navLinks } from '@/lib/data';
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -104,38 +105,7 @@ export default function Home() {
       </section>
 
       {/* ─── WHAT WE DO ─── */}
-      <section id="we-do" className="bg-surface py-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="reveal text-center mb-16">
-            <p className="text-teal font-heading text-sm font-bold uppercase tracking-[0.3em] mb-3">
-              Our Expertise
-            </p>
-            <h2 className="font-heading text-4xl md:text-6xl font-black uppercase text-teal-dark">
-              What We Do
-            </h2>
-          </div>
-
-          <div className="stagger grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((s) => (
-              <div key={s.title} className="service-card bg-white rounded-lg overflow-hidden">
-                <div className="relative h-52 overflow-hidden">
-                  <Image
-                    src={s.img}
-                    alt={s.title}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="font-heading text-xl font-black uppercase text-teal mb-3">{s.title}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{s.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServicesSection />
 
       {/* ─── OUR TEAM ─── */}
       <TeamSection />
