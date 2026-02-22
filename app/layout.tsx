@@ -38,47 +38,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
       <head>
         {/*
-          Official Cookiebot hybrid setup — plain <script> tags are used here
-          intentionally. Next.js <Script strategy="beforeInteractive"> queues
-          scripts via self.__next_s and renders them AFTER framework preloads,
-          defeating the required order. Plain <script> tags are server-rendered
-          inline at this exact position in the HTML stream.
+          The three Cookiebot hybrid-setup scripts (Consent Mode defaults, GTM,
+          and Cookiebot uc.js) are injected as the very first <head> children by
+          netlify/edge-functions/inject-consent.ts.
 
-          Required order (source: https://support.cookiebot.com/hc/en-us/articles/360009192739):
-            1. Google Consent Mode v2 defaults  (data-cookieconsent="ignore")
-            2. GTM inline snippet               (data-cookieconsent="ignore")
-            3. Cookiebot uc.js                  (data-blockingmode="auto")
+          They cannot live here: Next.js App Router always prepends <meta charset>,
+          <meta viewport>, and font preloads before any component-level <head>
+          content, regardless of whether plain <script> or <Script> is used.
+          The Netlify Edge Function rewrites the raw HTML at the CDN edge and
+          is the only mechanism that guarantees true first-in-head placement.
         */}
-
-        {/* 1. Google Consent Mode v2 defaults */}
-        <script
-          id="google-consent-defaults"
-          data-cookieconsent="ignore"
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'denied','personalization_storage':'denied','security_storage':'granted','wait_for_update':500});gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',true);`,
-          }}
-        />
-
-        {/* 2. Google Tag Manager */}
-        <script
-          id="gtm"
-          data-cookieconsent="ignore"
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MTLNQ2NT');`,
-          }}
-        />
-
-        {/* 3. Cookiebot uc.js with auto-blocking */}
-        <script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839"
-          data-blockingmode="auto"
-        />
-
         <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
       </head>
       <body className="font-body antialiased">
+        {/* GTM no-JS fallback */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-MTLNQ2NT"

@@ -5,6 +5,11 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
+# Inject consent scripts as the very first <head> children on every HTML page.
+[[edge_functions]]
+  function = "inject-consent"
+  path = "/*"
+
 [build.environment]
   NODE_VERSION = "20"
 
