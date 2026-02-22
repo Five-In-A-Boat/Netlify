@@ -45,14 +45,18 @@ const CONSENT_SCRIPTS =
   `<script id="Cookiebot" type="text/javascript" src="https://consent.cookiebot.com/uc.js" ` +
   `data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839" data-blockingmode="auto"></script>`;
 
-export default async function handler(request: Request): Promise<Response> {
+// Context type is provided by the Netlify Edge Functions runtime.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function handler(request: Request, context: any): Promise<Response> {
   // Only transform HTML responses — pass everything else through unchanged.
   const url = new URL(request.url);
   if (url.pathname.startsWith("/_next/") || url.pathname.startsWith("/api/")) {
-    return fetch(request);
+    return context.next();
   }
 
-  const upstream = await fetch(request);
+  // context.next() forwards to the origin (Next.js) without re-invoking this
+  // edge function. Never use fetch(request) here — that causes infinite recursion.
+  const upstream = await context.next();
   const contentType = upstream.headers.get("content-type") ?? "";
 
   if (!contentType.includes("text/html")) {
