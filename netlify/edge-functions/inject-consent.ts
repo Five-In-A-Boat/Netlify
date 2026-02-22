@@ -1,21 +1,21 @@
 /**
  * inject-consent.ts — Netlify Edge Function
  *
- * VANILLA COOKIEBOT-ONLY mode: injects ONLY consent defaults + Cookiebot uc.js.
- * No GTM. This proves the banner works before GTM is reintroduced.
+ * Official Cookiebot hybrid setup — injects three scripts as the very first
+ * children of <head>, before Next.js prepends charset / viewport / font preloads.
  *
- * Injected as the very first children of <head>, before Next.js prepends
- * charset / viewport / font preloads. Plain <script> tags in layout.tsx cannot
- * achieve this — Next.js App Router always prepends framework metadata first.
- * This edge function rewrites the raw HTML at the CDN edge before the browser
- * receives it.
- *
- * Required order:
+ * Required order (source: https://support.cookiebot.com/hc/en-us/articles/360009192739):
  *   1. Google Consent Mode v2 defaults  — data-cookieconsent="ignore"
- *   2. Cookiebot uc.js                  — data-blockingmode="auto"
+ *   2. GTM inline snippet               — data-cookieconsent="ignore"
+ *   3. Cookiebot uc.js                  — data-blockingmode="auto"
+ *
+ * GTM uses d.head.appendChild (not insertBefore) so gtm.js is appended after
+ * our three scripts in the DOM rather than inserted before them.
  */
 
 const CONSENT_SCRIPTS =
+  // 1. Google Consent Mode v2 defaults — must be first so all Google tags
+  //    see denied-by-default before any network request is made.
   `<script id="google-consent-defaults" data-cookieconsent="ignore">` +
   `window.dataLayer=window.dataLayer||[];` +
   `function gtag(){dataLayer.push(arguments);}` +
@@ -33,6 +33,21 @@ const CONSENT_SCRIPTS =
   `gtag('set','url_passthrough',true);` +
   `</script>` +
 
+  // 2. GTM inline snippet — loads the GTM container asynchronously.
+  //    d.head.appendChild keeps gtm.js after our three scripts in the DOM.
+  //    data-cookieconsent="ignore" stops Cookiebot auto-blocking from
+  //    blocking this script itself.
+  `<script id="gtm" data-cookieconsent="ignore">` +
+  `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':` +
+  `new Date().getTime(),event:'gtm.js'});var ` +
+  `j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=` +
+  `'https://www.googletagmanager.com/gtm.js?id='+i+dl;d.head.appendChild(j);` +
+  `})(window,document,'script','dataLayer','GTM-MTLNQ2NT');` +
+  `</script>` +
+
+  // 3. Cookiebot uc.js — auto-blocking mode intercepts all subsequent
+  //    third-party scripts (Crisp, Calendly, etc.) until consent is given.
+  //    Must load after GTM so the container is already queued.
   `<script id="Cookiebot" type="text/javascript" src="https://consent.cookiebot.com/uc.js" ` +
   `data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839" data-blockingmode="auto"></script>`;
 
