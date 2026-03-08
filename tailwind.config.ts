@@ -16,8 +16,8 @@ const config: Config = {
         surface: '#EDF3F6',
       },
       fontFamily: {
-        heading: ['var(--font-heading)', 'sans-serif'],
-        body: ['var(--font-body)', 'sans-serif'],
+        heading: ['"Barlow Condensed"', 'Impact', 'Arial Narrow', 'sans-serif'],
+        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
       },
       keyframes: {
         fadeUp: {
