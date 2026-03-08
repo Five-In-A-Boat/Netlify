@@ -1,21 +1,6 @@
 import type { Metadata } from 'next';
-import { Barlow_Condensed, Inter } from 'next/font/google';
 import './globals.css';
 import CrispChat from '@/app/components/CrispChat';
-
-const barlowCondensed = Barlow_Condensed({
-  subsets: ['latin'],
-  weight: ['600', '700', '900'],
-  variable: '--font-heading',
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '600'],
-  variable: '--font-body',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: 'Five Play | Gaming & Esports PR',
@@ -35,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`scroll-smooth ${barlowCondensed.variable} ${inter.variable}`}>
+    <html lang="en" className="scroll-smooth">
       <head>
         {/*
           Consent defaults + GTM + Cookiebot are injected as the very first
