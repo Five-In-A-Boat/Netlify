@@ -1,6 +1,12 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+
+# IMPORTANT:
+# Do not force a publish directory for Next.js App Router sites.
+# Netlify's Next.js runtime/plugin generates the correct deploy output
+# (including required server/edge functions) during the build.
+# Setting `publish = ".next"` can result in static-only deploys where
+# no functions are deployed and pages render blank.
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
