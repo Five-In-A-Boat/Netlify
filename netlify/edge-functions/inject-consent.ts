@@ -74,6 +74,10 @@ export default async function handler(request: Request, context: any): Promise<R
   const modified = html.replace("<head>", `<head>${CONSENT_SCRIPTS}`);
 
   const headers = new Headers(upstream.headers);
+  // Body was transformed, so remove upstream encoding + validators that no longer match.
+  headers.delete("content-encoding");
+  headers.delete("content-length");
+  headers.delete("etag");
   headers.set("cache-control", "no-store");
 
   return new Response(modified, { status: upstream.status, headers });
