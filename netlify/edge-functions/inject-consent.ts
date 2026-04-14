@@ -7,10 +7,16 @@
  * Required order (source: https://support.cookiebot.com/hc/en-us/articles/360009192739):
  *   1. Google Consent Mode v2 defaults  — data-cookieconsent="ignore"
  *   2. GTM inline snippet               — data-cookieconsent="ignore"
- *   3. Cookiebot uc.js                  — data-blockingmode="auto"
+ *   3. Cookiebot uc.js                  — data-blockingmode="manual"
  *
  * GTM uses d.head.appendChild (not insertBefore) so gtm.js is appended after
  * our three scripts in the DOM rather than inserted before them.
+ *
+ * Note: We use data-blockingmode="manual" because auto-blocking is a Cookiebot
+ * premium feature. On the free plan, auto-blocking loads partially and breaks
+ * the banner's consent buttons. Script gating is handled entirely by Google
+ * Consent Mode v2 defaults + GTM, so manual mode is sufficient — Cookiebot
+ * just renders the banner and fires consent signals.
  */
 
 const CONSENT_SCRIPTS =
@@ -45,11 +51,12 @@ const CONSENT_SCRIPTS =
   `})(window,document,'script','dataLayer','GTM-MTLNQ2NT');` +
   `</script>` +
 
-  // 3. Cookiebot uc.js — auto-blocking mode intercepts all subsequent
-  //    third-party scripts (Crisp, Calendly, etc.) until consent is given.
+  // 3. Cookiebot uc.js — manual blocking mode. Auto-blocking is a premium
+  //    feature; on the free plan it breaks the banner's consent buttons.
+  //    Script gating is handled by Google Consent Mode v2 + GTM above.
   //    Must load after GTM so the container is already queued.
   `<script id="Cookiebot" type="text/javascript" src="https://consent.cookiebot.com/uc.js" ` +
-  `data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839" data-blockingmode="auto"></script>`;
+  `data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839" data-blockingmode="manual"></script>`;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function handler(request: Request, context: any): Promise<Response> {
