@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="scroll-smooth">
       <head>
         {/*
-          Consent defaults + GTM + Cookiebot are injected as the very first
+          Consent defaults + GTM are injected as the very first
           <head> children by netlify/edge-functions/inject-consent.ts.
           Plain <script> tags in layout.tsx cannot achieve first-in-head placement
           — Next.js App Router always prepends framework metadata first.
