@@ -1,28 +1,22 @@
 /**
  * inject-consent.ts — Netlify Edge Function
  *
- * Official Cookiebot hybrid setup — injects three scripts as the very first
- * children of <head>, before Next.js prepends charset / viewport / font preloads.
+ * Injects Google Consent Mode v2 defaults and the GTM bootstrap snippet as
+ * the very first children of <head>, before Next.js prepends charset /
+ * viewport / font preloads.
  *
- * Required order (source: https://support.cookiebot.com/hc/en-us/articles/360009192739):
- *   1. Google Consent Mode v2 defaults  — data-cookieconsent="ignore"
- *   2. GTM inline snippet               — data-cookieconsent="ignore"
- *   3. Cookiebot uc.js                  — data-blockingmode="manual"
+ * Order:
+ *   1. Google Consent Mode v2 defaults
+ *   2. GTM inline snippet
  *
  * GTM uses d.head.appendChild (not insertBefore) so gtm.js is appended after
- * our three scripts in the DOM rather than inserted before them.
- *
- * Note: We use data-blockingmode="manual" because auto-blocking is a Cookiebot
- * premium feature. On the free plan, auto-blocking loads partially and breaks
- * the banner's consent buttons. Script gating is handled entirely by Google
- * Consent Mode v2 defaults + GTM, so manual mode is sufficient — Cookiebot
- * just renders the banner and fires consent signals.
+ * our scripts in the DOM rather than inserted before them.
  */
 
 const CONSENT_SCRIPTS =
   // 1. Google Consent Mode v2 defaults — must be first so all Google tags
   //    see denied-by-default before any network request is made.
-  `<script id="google-consent-defaults" data-cookieconsent="ignore">` +
+  `<script id="google-consent-defaults">` +
   `window.dataLayer=window.dataLayer||[];` +
   `function gtag(){dataLayer.push(arguments);}` +
   `gtag('consent','default',{` +
@@ -40,23 +34,14 @@ const CONSENT_SCRIPTS =
   `</script>` +
 
   // 2. GTM inline snippet — loads the GTM container asynchronously.
-  //    d.head.appendChild keeps gtm.js after our three scripts in the DOM.
-  //    data-cookieconsent="ignore" stops Cookiebot auto-blocking from
-  //    blocking this script itself.
-  `<script id="gtm" data-cookieconsent="ignore">` +
+  //    d.head.appendChild keeps gtm.js after our scripts in the DOM.
+  `<script id="gtm">` +
   `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':` +
   `new Date().getTime(),event:'gtm.js'});var ` +
   `j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=` +
   `'https://www.googletagmanager.com/gtm.js?id='+i+dl;d.head.appendChild(j);` +
   `})(window,document,'script','dataLayer','GTM-MTLNQ2NT');` +
-  `</script>` +
-
-  // 3. Cookiebot uc.js — manual blocking mode. Auto-blocking is a premium
-  //    feature; on the free plan it breaks the banner's consent buttons.
-  //    Script gating is handled by Google Consent Mode v2 + GTM above.
-  //    Must load after GTM so the container is already queued.
-  `<script id="Cookiebot" type="text/javascript" src="https://consent.cookiebot.com/uc.js" ` +
-  `data-cbid="b1cab8c8-dc9e-4a52-a3b9-ce47cfdcd839" data-blockingmode="manual"></script>`;
+  `</script>`;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function handler(request: Request, context: any): Promise<Response> {
