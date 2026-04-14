@@ -18,40 +18,40 @@
 
 @layer components {
   /* Scroll reveal animation classes */
-  .reveal {
+  .js-reveal .reveal {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
 
-  .reveal.from-left {
+  .js-reveal .reveal.from-left {
     transform: translateX(-40px);
   }
 
-  .reveal.from-right {
+  .js-reveal .reveal.from-right {
     transform: translateX(40px);
   }
 
-  .reveal.visible {
+  .js-reveal .reveal.visible {
     opacity: 1;
     transform: translate(0, 0);
   }
 
   /* Staggered children */
-  .stagger > * {
+  .js-reveal .stagger > * {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
   }
 
-  .stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
-  .stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
-  .stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
-  .stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
-  .stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
-  .stagger.visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
-  .stagger.visible > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
-  .stagger.visible > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
+  .js-reveal .stagger.visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
+  .js-reveal .stagger.visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+  .js-reveal .stagger.visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+  .js-reveal .stagger.visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+  .js-reveal .stagger.visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+  .js-reveal .stagger.visible > *:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+  .js-reveal .stagger.visible > *:nth-child(7) { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+  .js-reveal .stagger.visible > *:nth-child(8) { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
 
   /* Service card hover */
   .service-card {
